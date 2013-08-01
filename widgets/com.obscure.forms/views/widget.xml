@@ -1,0 +1,5 @@
+<Alloy>
+  <View>
+    <Label>Please specify a "name" attribute to get a specific form entry field</Label>
+  </View>
+</Alloy>

@@ -1,0 +1,18 @@
+<Alloy>
+	<Window id="win" title="{title}">
+	  <LeftNavButton>
+      <Button onClick="doSave">Save</Button>
+	  </LeftNavButton>
+	  <RightNavButton>
+	    <Button onClick="doClose">Cancel</Button>
+	  </RightNavButton>
+	  <ScrollView layout="vertical">
+      <Widget src="com.obscure.forms" name="text" label="title" field="title"/>
+      <Widget src="com.obscure.forms" name="text" label="author" field="author"/>
+      <Widget src="com.obscure.forms" name="date" label="published" field="published"/>
+      <Widget src="com.obscure.forms" name="date" label="formatted" field="published" display="ddd, MMM Do, YYYY"/>
+      <Widget src="com.obscure.forms" name="date" label="modified" field="modified"/>
+      <Widget src="com.obscure.forms"/>
+    </ScrollView>
+	</Window>
+</Alloy>

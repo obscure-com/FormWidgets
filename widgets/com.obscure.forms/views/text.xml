@@ -1,0 +1,6 @@
+<Alloy>
+  <View id="view">
+    <Label id="form_label" class="form_label"/>
+    <TextField id="form_text_textfield" class="form_text_textfield" onChange="textChanged"/>
+  </View>
+</Alloy>

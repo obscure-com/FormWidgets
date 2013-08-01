@@ -1,0 +1,12 @@
+<Alloy>
+  <View id="container">
+    <View id="view">
+      <Label id="form_label" class="form_label"/>
+      <Label id="form_date_label" class="form_date_label" onClick="toggleDatePicker"/>
+    </View>
+    <View id="drawer" layout="vertical">
+      <Label>drawer here</Label>
+      <Label>line 2</Label>
+    </View>
+  </View>
+</Alloy>

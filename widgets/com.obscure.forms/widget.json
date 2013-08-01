@@ -1,0 +1,15 @@
+{
+  "id": "com.obscure.forms",
+  "name": "FormBuilder",
+  "description": "widget for creating data entry forms in Alloy",
+  "author": "Paul Mietz Egli",
+  "version": "1.0",
+  "copyright": "(c) 2013 Paul Mietz Egli",
+  "license": "Apache 2.0",
+  "min-alloy-version": "1.0",
+  "min-titanium-version": "3.0",
+  "tags": "",
+  "platforms": "android,ios",
+  "dependencies": {
+  }
+}
