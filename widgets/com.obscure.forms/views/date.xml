@@ -5,8 +5,7 @@
       <Label id="form_date_label" class="form_date_label" onClick="toggleDatePicker"/>
     </View>
     <View id="drawer" layout="vertical">
-      <Label>drawer here</Label>
-      <Label>line 2</Label>
+      <Picker id="picker" onChange="pickerChange"/>
     </View>
   </View>
 </Alloy>

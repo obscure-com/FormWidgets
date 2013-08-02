@@ -17,20 +17,23 @@ var postlayout = function(e) {
 $.container.addEventListener('postlayout', postlayout);
 
 var display = args.display || 'calendar';
-var withtime = _.isBoolean(args.time) ? args.time : false;
+var withtime = args.time === 'true';
+
+$.picker.type = withtime ? Ti.UI.PICKER_TYPE_DATE_AND_TIME : Ti.UI.PICKER_TYPE_DATE;
 
 // TODO minDate, maxDate, minuteInterval, 
 
 function refresh() {
   if ($model && args.field) {
     var m = moment($model.get(args.field), args.parse);
-    if (m) {
+    if (m && m.isValid()) {
       if (display === 'calendar') {
         $.form_date_label.text = m.calendar();
       }
       else {
         $.form_date_label.text = m.format(display);
       }
+      $.picker.value = m.toDate();
     }
   }
 }
@@ -44,6 +47,13 @@ exports.setModel = function(model) {
 
 
 // events
+
+function pickerChange(e) {
+  if ($model && args.field) {
+    $model.set(args.field, e.value);
+    refresh();
+  }
+}
 
 function toggleDatePicker(e) {
   if ($.container.size.height == containerHeight) {

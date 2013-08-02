@@ -11,6 +11,7 @@
       <Widget src="com.obscure.forms" name="text" label="author" field="author"/>
       <Widget src="com.obscure.forms" name="date" label="published" field="published"/>
       <Widget src="com.obscure.forms" name="date" label="formatted" field="published" display="ddd, MMM Do, YYYY"/>
+      <Widget src="com.obscure.forms" name="date" label="published" field="published" time="true"/>
       <Widget src="com.obscure.forms" name="date" label="modified" field="modified"/>
       <Widget src="com.obscure.forms"/>
     </ScrollView>
