@@ -9,7 +9,6 @@ exports.cliVersion = '>=3.X';
 exports.init = function (logger, config, cli, appc) {
 
 	var path = require('path'),
-		fs = require('fs'),
 		afs = appc.fs,
 		i18n = appc.i18n(__dirname),
 		__ = i18n.__,
@@ -26,16 +25,8 @@ exports.init = function (logger, config, cli, appc) {
 			finished();
 			return;
 		}
+
 		logger.info(__('Found Alloy app in %s', appDir.cyan));
-
-		// TODO: Make this check specific to a TiSDK version
-		// create a .alloynewcli file to tell old plugins not to run
-		var buildDir = path.join(cli.argv['project-dir'], 'build');
-		if (!afs.exists(buildDir)) {
-			fs.mkdirSync(buildDir);
-		}
-		fs.writeFileSync(path.join(buildDir, '.alloynewcli'), '');
-
 		var compilerCommand = afs.resolvePath(__dirname, '..', 'Alloy', 'commands', 'compile', 'index.js'),
 			config = {
 				platform: /(?:iphone|ipad)/.test(cli.argv.platform) ? 'ios' : cli.argv.platform,
@@ -58,12 +49,12 @@ exports.init = function (logger, config, cli, appc) {
 				require(compilerCommand)({}, {
 					config: config,
 					outputPath: cli.argv['project-dir'],
-					_version: pkginfo.version
+					_version: pkginfo.version,
 				});
 			} catch (e) {
 				logger.error(__('Alloy compiler failed'));
 				e.toString().split('\n').forEach(function (line) {
-					if (line) { logger.error(line); }
+					line && logger.error(line);
 				});
 				process.exit(1);
 			}
@@ -76,9 +67,7 @@ exports.init = function (logger, config, cli, appc) {
 			parallel(this, ['alloy', 'node'].map(function (bin) {
 				return function (done) {
 					var envName = 'ALLOY_' + (bin == 'node' ? 'NODE_' : '') + 'PATH';
-
-					paths[bin] = process.env[envName];
-					if (paths[bin]) {
+					if (paths[bin] = process.env[envName]) {
 						done();
 					} else if (process.platform == 'win32') {
 						paths['alloy'] = 'alloy.cmd';
@@ -97,7 +86,7 @@ exports.init = function (logger, config, cli, appc) {
 									'/usr/bin/' + bin
 								].map(function (p) {
 									return function (cb) {
-										if (afs.exists(p)) { paths[bin] = p; }
+										afs.exists(p) && (paths[bin] = p);
 										cb();
 									};
 								}), done);
@@ -107,36 +96,28 @@ exports.init = function (logger, config, cli, appc) {
 				};
 			}), function () {
 				var cmd = [paths.node, paths.alloy, 'compile', appDir, '--config', config];
-				if (cli.argv['no-colors']) { cmd.push('--no-colors'); }
-				if (process.platform === 'win32') { cmd.shift(); }
+				cli.argv['no-colors'] && cmd.push('--no-colors');
+				process.platform == 'win32' && cmd.shift();
 				logger.info(__('Executing Alloy compile: %s', cmd.join(' ').cyan));
 
-				var child = spawn(cmd.shift(), cmd);
-
-				function checkLine(line) {
-					var re = new RegExp(
-						'(?:\u001b\\[\\d+m)?\\[?(' +
-						logger.getLevels().join('|') +
-						')\\]?\s*(?:\u001b\\[\\d+m)?(.*)', 'i'
-					);
-					if (line) {
-						var m = line.match(re);
-						if (m) {
-							logger[m[1].toLowerCase()](m[2].trim());
-						} else {
-							logger.debug(line);
-						}
-					}
-				}
-
+				var child = spawn(cmd.shift(), cmd),
+					// this regex is used to strip [INFO] and friends from alloy's output and re-log it using our logger
+					re = new RegExp('(\u001b\\[\\d+m)?\\[?(' + logger.getLevels().join('|') + ')\\]?\s*(\u001b\\[\\d+m)?(.*)', 'i');
 				child.stdout.on('data', function (data) {
 					data.toString().split('\n').forEach(function (line) {
-						checkLine(line);
+						if (line) {
+							var m = line.match(re);
+							if (m) {
+								logger[m[2].toLowerCase()](m[4].trim());
+							} else {
+								logger.debug(line);
+							}
+						}
 					});
 				});
 				child.stderr.on('data', function (data) {
 					data.toString().split('\n').forEach(function (line) {
-						checkLine(line);
+						line && logger.error(line);
 					});
 				});
 				child.on('exit', function (code) {

@@ -1,0 +1,13 @@
+<Alloy>
+  <View id="container">
+    <View id="view" onClick="togglePicker">
+      <Label id="form_label" class="form_label"/>
+      <Label id="form_picker_label" class="form_picker_label"/>
+    </View>
+    <View id="drawer" layout="vertical">
+      <Picker id="picker" onChange="pickerChange">
+        <PickerColumn id="pickerColumn"/>
+      </Picker>
+    </View>
+  </View>
+</Alloy>

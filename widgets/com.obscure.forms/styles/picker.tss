@@ -1,0 +1,49 @@
+"#container": {
+  height: '48dp',
+  layout: 'vertical',
+},
+
+"#view": {
+  height: '48dp',
+  top: '2dp',
+  left: '4dp',
+  right: '4dp',
+  layout: 'horizontal',
+},
+
+"#drawer": {
+  height: Ti.UI.SIZE,
+  top: '4dp',
+  left: '4dp',
+  right: '4dp',
+  backgroundColor: 'red'
+},
+
+"#picker": {
+  type: Ti.UI.PICKER_TYPE_PLAIN
+},
+
+".form_label": {
+  top: 0,
+  bottom: 0,
+  height: Ti.UI.FILL,
+  width: '28%',
+  right: '2%',
+  textAlign: 'right',
+  verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+  color: '#004080',
+},
+
+".form_picker_label": {
+  height: Ti.UI.SIZE,
+  width: Ti.UI.FILL,
+  right: '2%',
+  verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
+},
+
+".form_label[platform=android]": {
+  font: {
+    fontSize: '14dp'
+  }
+},
+

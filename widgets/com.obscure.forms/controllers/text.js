@@ -9,7 +9,7 @@ if (args.label) {
   $.form_label.text = L(args.label, args.label);  
 }
 
-exports.setModel = function(model) {
+exports.bindModel = function(model) {
   $model = model;
   if ($model && args.field) {
     $.form_text_textfield.value = $model.get(args.field);

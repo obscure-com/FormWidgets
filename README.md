@@ -36,9 +36,12 @@ Add the following declaration to your `config.json` file to enable the widget:
 At the moment, the form controller needs to explicitly set the model object for each
 widget.  I'm working on making this easier.
 
-    for (var i in $.__views) {
-      var o = $.__views[i];
-      o.__widgetId === 'com.obscure.forms' && o.setModel && o.setModel($.model);
+    function windowOpened(e) {
+      for (i in $.__views) {
+        if (_.isFunction($.__views[i]['bindModel'])) {
+          $.__views[i].bindModel($.model);
+        }
+      }
     }
     
     function save(e) {

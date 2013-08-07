@@ -1,7 +1,7 @@
 <Alloy>
-  <Collection src="book"/>
-	<Window>
-	  <TableView dataCollection="book">
+  <Collection id="library" src="book" instance="true"/>
+	<Window onOpen="windowOpened">
+	  <TableView dataCollection="$.library">
 	    <TableViewRow title="{title}" onClick="showDetails" book_id="{book_id}"/>
 	  </TableView>
 	</Window>

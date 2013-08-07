@@ -40,7 +40,7 @@ function refresh() {
 
 // exports
 
-exports.setModel = function(model) {
+exports.bindModel = function(model) {
   $model = model;
   refresh();
 };

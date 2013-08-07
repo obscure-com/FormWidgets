@@ -3,6 +3,7 @@ exports.definition = {
     columns: {
       title: "TEXT",
       author: "TEXT",
+      genre: "TEXT",
       published: "TEXT",
       modified: "TIMESTAMP",
       book_id: "INTEGER PRIMARY KEY AUTOINCREMENT"
