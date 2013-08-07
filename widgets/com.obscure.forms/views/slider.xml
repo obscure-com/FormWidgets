@@ -1,0 +1,6 @@
+<Alloy>
+  <View id="view">
+    <Label id="form_label" class="form_label"/>
+    <Slider id="form_slider_slider" class="form_slider_slider" onTouchend="sliderTouchEnded"/>
+  </View>
+</Alloy>
