@@ -11,7 +11,7 @@ function windowOpened(e) {
 }
 
 function doSave(e) {
-  Ti.API.info($.book.toJSON());
+  Ti.API.info($model.toJSON());
 }
 
 function doClose(e) {
