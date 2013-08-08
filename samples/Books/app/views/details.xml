@@ -10,6 +10,7 @@
 	  <ScrollView layout="vertical">
       <Widget src="com.obscure.forms" name="text" label="title" field="title"/>
       <Widget src="com.obscure.forms" name="text" label="author" field="author"/>
+      <Widget src="com.obscure.forms" name="switch" label="read" field="read"/>
       <Widget src="com.obscure.forms" name="date" label="formatted" field="published" display="ddd, MMM Do, YYYY"/>
       <Widget src="com.obscure.forms" name="date" label="modified" field="modified"/>
       <Widget src="com.obscure.forms" name="picker" label="genre" field="genre" sourceCollection="genre" sourceField="name"/>

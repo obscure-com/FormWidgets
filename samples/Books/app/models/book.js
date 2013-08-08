@@ -7,6 +7,7 @@ exports.definition = {
       published: "TEXT",
       modified: "TIMESTAMP",
       rating: "NUMBER",
+      read: "NUMBER",
       book_id: "INTEGER PRIMARY KEY AUTOINCREMENT"
     },
     adapter: {
