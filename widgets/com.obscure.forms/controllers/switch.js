@@ -10,7 +10,7 @@ if (args.label) {
 exports.bindModel = function(model) {
   $model = model;
   if ($model && args.field) {
-    $.form_switch_switch.value = new Boolean($model.get(args.field)).valueOf();
+    $.form_switch_switch.value = !!$model.get(args.field);
   }
 };
 
