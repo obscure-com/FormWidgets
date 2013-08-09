@@ -1,5 +1,3 @@
-var utils = require(WPATH('utils'));
-
 var $model;
 
 var args = arguments[0] || {};
@@ -12,9 +10,10 @@ if (args.label) {
 exports.bindModel = function(model) {
   $model = model;
   if ($model && args.field) {
-    $.form_switch_switch.value = $model.get(args.field);
+    $.form_switch_switch.value = new Boolean($model.get(args.field)).valueOf();
   }
 };
+
 
 function switchChanged(e) {
   if ($model && args.field) {
