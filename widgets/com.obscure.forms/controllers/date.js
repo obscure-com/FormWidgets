@@ -55,16 +55,30 @@ function pickerChange(e) {
 }
 
 function toggleDatePicker(e) {
-  if ($.container.size.height == containerHeight) {
-    $.container.animate({
-      height: containerHeight + $.drawer.size.height + 8,
-      duration: 200,
-    });
+  if (OS_IOS) {
+    if ($.container.size.height == containerHeight) {
+      $.container.animate({
+        height: containerHeight + $.drawer.size.height + 8,
+        duration: 200,
+      });
+    }
+    else {
+      $.container.animate({
+        height: containerHeight,
+        duration: 200,
+      });
+    }
   }
-  else {
-    $.container.animate({
-      height: containerHeight,
-      duration: 200,
+  else if (OS_ANDROID) {
+    // TODO need a date+time dialog if withtime == true
+    $.picker.showDatePickerDialog({
+      value: $model && $model.get(args.field),
+      callback: function(e) {
+        if (!e.cancel && $model) {
+          $model.set(args.field, e.value);
+          refresh();
+        }
+      }
     });
   }
 }
