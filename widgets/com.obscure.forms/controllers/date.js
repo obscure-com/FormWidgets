@@ -1,5 +1,4 @@
-var utils = require(WPATH('utils')),
-    moment = require(WPATH('moment'));
+var moment = require(WPATH('moment'));
 
 var $model;
 var args = arguments[0] || {};

@@ -1,5 +1,3 @@
-var utils = require(WPATH('utils'));
-
 var $model;
 var args = arguments[0] || {};
 var containerHeight;
