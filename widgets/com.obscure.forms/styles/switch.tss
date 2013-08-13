@@ -19,7 +19,6 @@
 },
 
 ".form_switch_switch": {
-  verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
 },
 
 ".form_label[platform=android]": {

@@ -14,7 +14,6 @@ exports.bindModel = function(model) {
   }
 };
 
-
 function switchChanged(e) {
   if ($model && args.field) {
     $model.set(args.field, e.source.value);
