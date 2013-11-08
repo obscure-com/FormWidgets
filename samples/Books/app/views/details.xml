@@ -1,21 +1,25 @@
 <Alloy>
   <Collection src="genre"/>
-	<Window id="win" title="{title}" onOpen="windowOpened">
-	  <LeftNavButton>
-      <Button onClick="doSave">Save</Button>
-	  </LeftNavButton>
-	  <RightNavButton>
-	    <Button onClick="doClose">Cancel</Button>
-	  </RightNavButton>
-	  <ScrollView layout="vertical">
-      <Widget src="com.obscure.forms" name="text" label="title" field="title"/>
-      <Widget src="com.obscure.forms" name="text" label="author" field="author"/>
-      <Widget src="com.obscure.forms" name="switch" label="read" field="read"/>
-      <Widget src="com.obscure.forms" name="date" label="formatted" field="published" display="ddd, MMM Do, YYYY"/>
-      <Widget src="com.obscure.forms" name="date" label="modified" field="modified"/>
-      <Widget src="com.obscure.forms" name="picker" label="genre" field="genre" sourceCollection="genre" sourceField="name"/>
-      <Widget src="com.obscure.forms" name="slider" label="rating" field="rating" min="0" max="5" snapToInteger="true"/>
-      <Widget src="com.obscure.forms"/>
-    </ScrollView>
-	</Window>
+  <NavigationWindow modal="true">
+  	<Window id="win" title="{title}" onOpen="windowOpened">
+  	  <LeftNavButton>
+        <Button onClick="doSave">Save</Button>
+  	  </LeftNavButton>
+  	  <RightNavButton>
+  	    <Button onClick="doClose">Cancel</Button>
+  	  </RightNavButton>
+  	  <ScrollView layout="vertical">
+        <Widget src="com.obscure.forms" name="text" label="title" field="title"/>
+        <Widget src="com.obscure.forms" name="text" label="author" field="author"/>
+        <Widget src="com.obscure.forms" name="switch" label="read" field="read"/>
+        <Widget src="com.obscure.forms" name="date" label="formatted" field="published" display="ddd, MMM Do, YYYY"/>
+        <Widget src="com.obscure.forms" name="date" label="modified" field="modified"/>
+        <!--
+        <Widget src="com.obscure.forms" name="picker" label="genre" field="genre" sourceCollection="genre" sourceField="name"/>
+        -->
+        <Widget src="com.obscure.forms" name="slider" label="rating" field="rating" min="0" max="5" snapToInteger="true"/>
+        <Widget src="com.obscure.forms"/>
+      </ScrollView>
+  	</Window>
+  </NavigationWindow>
 </Alloy>

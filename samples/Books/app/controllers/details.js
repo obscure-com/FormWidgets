@@ -15,5 +15,5 @@ function doSave(e) {
 }
 
 function doClose(e) {
-  $.win.close();
+  $.details.close();
 }
