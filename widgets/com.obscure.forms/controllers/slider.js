@@ -19,6 +19,10 @@ exports.bindModel = function(model) {
   }
 };
 
+function focused(e) {
+  parent && parent.fireEvent('com.obscure.forms:blur');
+}
+
 function sliderTouchEnded(e) {
   if (snap) {
     e.source.value = Math.round(e.source.value);

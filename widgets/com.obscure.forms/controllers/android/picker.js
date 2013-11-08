@@ -1,6 +1,7 @@
 var $model;
 var args = arguments[0] || {};
 var containerHeight;
+var parent = args['__parentSymbol'];
 
 var collection = Alloy.Collections[args.sourceCollection];
 if (!collection) {
@@ -49,6 +50,10 @@ exports.bindModel = function(model) {
 
 
 // events
+
+function focused(e) {
+  parent && parent.trigger('com.obscure.forms:blur');
+}
 
 function togglePicker(e) {
   collection.fetch();

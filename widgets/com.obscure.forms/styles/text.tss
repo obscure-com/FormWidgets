@@ -16,6 +16,7 @@
   textAlign: 'right',
   verticalAlign: Ti.UI.TEXT_VERTICAL_ALIGNMENT_CENTER,
   color: '#004080',
+  touchEnabled: false,
 },
 
 ".form_text_textfield": {

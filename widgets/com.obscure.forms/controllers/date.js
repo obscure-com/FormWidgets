@@ -12,7 +12,7 @@ if (args.label) {
 var postlayout = function(e) {
   containerHeight = e.source.size.height;
   e.source.removeEventListener('postlayout', postlayout);
-}
+};
 $.container.addEventListener('postlayout', postlayout);
 
 var display = args.display || 'calendar';
@@ -44,8 +44,18 @@ exports.bindModel = function(model) {
   refresh();
 };
 
+exports.setParent = _.wrap($.setParent, function(f, parent) {
+  f(parent);
+  parent.addEventListener('com.obscure.forms:blur', function(e) {
+    // TODO close picker view
+  });
+});
 
 // events
+
+function focused(e) {
+  parent && parent.fireEvent('com.obscure.forms:blur');
+}
 
 function pickerChange(e) {
   if ($model && args.field) {

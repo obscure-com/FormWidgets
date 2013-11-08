@@ -7,6 +7,13 @@ if (args.label) {
   $.form_label.text = L(args.label, args.label);  
 }
 
+exports.setParent = _.wrap($.setParent, function(f, parent) {
+  f(parent);
+  parent.addEventListener('com.obscure.forms:blur', function(e) {
+    $.form_text_textfield.blur();
+  });
+});
+
 exports.bindModel = function(model) {
   $model = model;
   if ($model && args.field) {

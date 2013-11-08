@@ -1,5 +1,5 @@
 <Alloy>
-  <View id="container">
+  <View id="container" onTouchstart="focused">
     <View id="view">
       <Label id="form_label" class="form_label"/>
       <Label id="form_date_label" class="form_date_label" onClick="toggleDatePicker"/>

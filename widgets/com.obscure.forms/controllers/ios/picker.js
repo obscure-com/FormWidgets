@@ -1,6 +1,7 @@
 var $model;
 var args = arguments[0] || {};
 var containerHeight;
+var parent = args['__parentSymbol'];
 
 var collection = Alloy.Collections[args.sourceCollection];
 if (!collection) {
@@ -29,14 +30,14 @@ collection.on('fetch', function() {
 });
 
 // set the label text to the localized value of the "label" argument 
-if (args.label) {
+if ($.form_label && args.label) {
   $.form_label.text = L(args.label, args.label);  
 }
 
 var postlayout = function(e) {
   containerHeight = e.source.size.height;
   e.source.removeEventListener('postlayout', postlayout);
-}
+};
 $.container.addEventListener('postlayout', postlayout);
 
 function refresh() {
@@ -52,6 +53,10 @@ exports.bindModel = function(model) {
 
 
 // events
+
+function focused(e) {
+  parent && parent.fireEvent('com.obscure.forms:blur');
+}
 
 function pickerChange(e) {
   if ($model && args.field) {

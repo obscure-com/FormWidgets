@@ -1,5 +1,5 @@
 <Alloy>
-  <View id="view">
+  <View id="view" onClick="focused">
     <Label id="form_label" class="form_label"/>
     <Switch id="form_switch_switch" class="form_switch_switch" value="false" onChange="switchChanged"/>
   </View>
